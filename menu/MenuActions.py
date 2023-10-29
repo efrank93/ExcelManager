@@ -1,8 +1,7 @@
 import PySimpleGUI as sg
 
 
-def menu_sections(theme):
-    sg.theme(theme)
+def menu_sections():
 
     layout = [['&Application', ['&Save', '&Exit']],
               ['&Edit', ['&Sum']],

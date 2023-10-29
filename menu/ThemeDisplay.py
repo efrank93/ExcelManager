@@ -30,9 +30,7 @@ def theme_window():
                                 enable_events=True)],
                     [sg.Button("Set Theme")]]
 
-    layout = [[theme_layout]]
-
-    return sg.Window("Theme Manager", layout, size=(500, 350), resizable=True).Finalize()
+    return sg.Window("Theme Manager", theme_layout, size=(500, 350), resizable=True).Finalize()
 
 
 def theme_main():

@@ -2,8 +2,7 @@ import PySimpleGUI as sg
 import os
 
 
-def file_selection(theme):
-    sg.theme(theme)
+def file_selection():
 
     layout = [
         [sg.Text('Select a single xls/csv file or a folder with this files', size=(40, 3),
