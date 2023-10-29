@@ -24,6 +24,5 @@ def create_window(theme):
     ]
 
     window = sg.Window("Excel Manager", layout, size=(800, 450), resizable=True).Finalize()
-    # window.Maximize()  # set window full screen
 
     return window
