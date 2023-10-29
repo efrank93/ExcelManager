@@ -19,8 +19,8 @@ def file_selection(theme):
 
 def get_files_from_folder(folder):
     try:
-        # Get list of files in folder
-        file_list = os.listdir(folder)
+        # Get list of files in folder with abs path
+        file_list = abs_file_path(folder)
     except:
         file_list = []
 
@@ -28,7 +28,7 @@ def get_files_from_folder(folder):
     filenames = [
         f
         for f in file_list
-        if os.path.isfile(os.path.join(folder, f)) and (
+        if os.path.isfile(f) and (
                 f.lower().endswith('.xlsx') or
                 f.lower().endswith('.xls') or
                 f.lower().endswith('.csv'))
@@ -37,14 +37,19 @@ def get_files_from_folder(folder):
     return filenames
 
 
-def add_file_to_list(f):
-    filenames = []
-    if os.path.isfile(f) and (
-            f.lower().endswith('.xlsx') or
-            f.lower().endswith('.xls') or
-            f.lower().endswith('.csv')):
-        filenames.append(f)
+def add_file_to_list(file_list, file):
+    if os.path.isfile(file) and (
+            file.lower().endswith('.xlsx') or
+            file.lower().endswith('.xls') or
+            file.lower().endswith('.csv')):
+        file_list.append(file)
     else:
         sg.popup_error('invalid file type')  # Shows red error button
 
-    return filenames
+    return file_list
+
+
+def abs_file_path(directory):
+    for dirpath, _, filenames in os.walk(directory):
+        for f in filenames:
+            yield os.path.abspath(os.path.join(dirpath, f))

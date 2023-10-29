@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 from gui import BrowseSelector as bs
+from menu import MenuActions as ma
 
 file_icon = b'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsSAAALEgHS3X78AAABU0lEQVQ4y52TzStEURiHn' \
             b'/ecc6XG54JSdlMkNhYWsiILS0lsJaUsLW2Mv8CfIDtr2VtbY4GUEvmIZnKbZsY977Uwt2HcyW1+dTZvt6fn9557BGB' \
@@ -14,7 +15,9 @@ def create_window(theme):
         theme = sg.OFFICIAL_PYSIMPLEGUI_THEME
     sg.theme(theme)
 
-    layout = [
+    layout = [[sg.Menu(ma.menu_sections(theme), key='-MENU-')]]
+
+    layout += [
         [
             sg.Column(bs.file_selection(theme), vertical_alignment='top')
         ]

@@ -15,4 +15,4 @@ def main_window_events(window):
         elif event == "-FOLDER-":
             window["-FILE LIST-"].update(bs.get_files_from_folder(values["-FOLDER-"]))
         elif event == "-FILE-":
-            window["-FILE LIST-"].update(bs.add_file_to_list(values["-FILE-"]))
+            window["-FILE LIST-"].update(bs.add_file_to_list(window["-FILE LIST-"].Values, values["-FILE-"]))
