@@ -16,7 +16,7 @@ def get_theme():
     except:
         global_theme = sg.theme()
     # Get theme from user settings for this program.  Use global theme if no entry found
-    user_theme = sg.user_settings_get_entry('-theme-', '')
+    user_theme = sg.user_settings_get_entry('-THEME-', '')
     if user_theme == '':
         user_theme = global_theme
     return user_theme
@@ -26,7 +26,7 @@ def theme_window():
     theme_layout = [[sg.Text("See how elements look under different themes by choosing a different theme here!")],
                     [sg.Listbox(values=sg.theme_list(),
                                 size=(20, 12),
-                                key='-THEME LISTBOX-',
+                                key='-THEMELISTBOX-',
                                 enable_events=True)],
                     [sg.Button("Set Theme")]]
 
@@ -41,7 +41,7 @@ def theme_main():
             break
         elif event == "Set Theme":
             print("[LOG] Clicked Set Theme!")
-            theme_chosen = values['-THEME LISTBOX-'][0]
+            theme_chosen = values['-THEMELISTBOX-'][0]
             print("[LOG] User Chose Theme: " + str(theme_chosen))
             window.close()
             return theme_chosen

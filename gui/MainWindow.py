@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
+
 from gui import BrowseSelector as bs
 from gui import MatrixViewer as mv
-from menu import MenuActions as ma
 
 file_icon = b'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsSAAALEgHS3X78AAABU0lEQVQ4y52TzStEURiHn' \
             b'/ecc6XG54JSdlMkNhYWsiILS0lsJaUsLW2Mv8CfIDtr2VtbY4GUEvmIZnKbZsY977Uwt2HcyW1+dTZvt6fn9557BGB' \
@@ -18,18 +18,17 @@ def create_window(theme):
 
     # layout = [[sg.Menu(ma.menu_sections(), key='-MENU-')]]
 
-    layout = [
-        [
-            sg.Column(bs.file_selection(), vertical_alignment='top'),
-            sg.Column(mv.create_table(), vertical_alignment='top', scrollable=True)
-        ]
-    ]
+    layout = [[
+        mv.create_table('-MATRIXALL-'),
+        mv.create_table('-MATRIXRESULT-'),
+    ]]
 
     layout += [
         [
-            sg.Button('Read file', key='-READ FILE-'),
-            sg.Button('Sum values'),
-            sg.Button('Export result')
+            sg.Column(bs.file_selection(), vertical_alignment='top'),
+            sg.Button('Read file', key='-READFILE-'),
+            sg.Button('Group values', key='-GROUPBYCOL-'),
+            sg.Button('Export result', key='-EXPORTCSV-')
         ]
     ]
 

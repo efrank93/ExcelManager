@@ -1,16 +1,20 @@
-import PySimpleGUI as sg
 import os
+
+import PySimpleGUI as sg
 
 
 def file_selection():
-
     layout = [
         [sg.Text('Select a single xls/csv file or a folder with this files', size=(40, 3),
                  auto_size_text=True)],
-        [sg.In(size=(24, 1), enable_events=True, key="-FILE-"), sg.FilesBrowse("Select a file", size=(15, 1))],
-        [sg.In(size=(24, 1), enable_events=True, key="-FOLDER-"),
-         sg.FolderBrowse("Select a forlder", size=(15, 1))],
-        [sg.Listbox(values=[], enable_events=True, size=(42, 15), key="-FILE LIST-", pad=((0, 0), (5, 30)))],
+        [sg.In(size=(24, 1), enable_events=True, key="-FILE-", visible=False),
+         sg.FilesBrowse("Select a file", size=(15, 1)),
+         sg.In(size=(24, 1), enable_events=True, key="-FOLDER-", visible=False),
+         sg.FolderBrowse("Select a folder", size=(15, 1))],
+        [sg.Listbox(values=[], enable_events=True, size=(40, 15),
+                    key="-FILELIST-", pad=((0, 0), (5, 30)),
+                    no_scrollbar=True
+                    )],
     ]
 
     return layout

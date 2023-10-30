@@ -1,24 +1,32 @@
 import PySimpleGUI as sg
+
 from functions import matrix as mx
-import pandas as pd
+
+COL_HEADINGS = ['HEADER 1', 'HEADER 2', 'HEADER 3', 'HEADER 4', 'HEADER 5']
+ROW_VALUES = [['VALUE 1', 'VALUE 2', 'VALUE 3', 'VALUE 4', 'VALUE 5']]
 
 
-def create_table():
-    headings = ['HEADER 1', 'HEADER 2', 'HEADER 3', 'HEADER 4', 'HEADER 5']
-    values = [['VALUE 1', 'VALUE 2', 'VALUE 3', 'VALUE 4', 'VALUE 5']]
-    layout = [[sg.Table(values=values,
-                        headings=headings,
-                        auto_size_columns=True,
-                        hide_vertical_scroll=True,
-                        justification='center',
-                        key='-MATRIX-')]]
-    return layout
+def create_table(key):
+    return [[sg.Table(values=ROW_VALUES,
+                      headings=COL_HEADINGS,
+                      auto_size_columns=True,
+                      justification='center',
+                      expand_x=True,
+                      key=key)]]
 
 
-def populate_table(file_list):
-    df = mx.read_file_into_matrix(file_list)
-    headings = df.columns.tolist()
-    data = df.values.tolist()
-    layout = [[sg.Table(data, headings=headings, justification='left', key='-TABLE-')], ]
+def read_file_into_matrix(file_list):
+    return mx.read_file_into_matrix(file_list)
 
-    return layout
+
+def update_headings(table, headings):
+    update_title(table, headings)
+
+
+def update_title(table, headings):
+    for cid, text in zip(COL_HEADINGS, headings):
+        table.heading(cid, text=text)
+
+
+def group_by_column(df, column):
+    return mx.sum_row_by_column(df, column)
