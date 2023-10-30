@@ -9,8 +9,11 @@ ROW_VALUES = [['VALUE 1', 'VALUE 2', 'VALUE 3', 'VALUE 4', 'VALUE 5']]
 def create_table(key):
     return [[sg.Table(values=ROW_VALUES,
                       headings=COL_HEADINGS,
-                      auto_size_columns=True,
+                      max_col_width=20,
+                      num_rows=10,
                       justification='center',
+                      font=('Arial', 12),
+                      alternating_row_color='green',
                       expand_x=True,
                       key=key)]]
 
@@ -30,3 +33,7 @@ def update_title(table, headings):
 
 def group_by_column(df, column):
     return mx.sum_row_by_column(df, column)
+
+
+def create_csv(df, output_dir):
+    mx.create_csv(df, output_dir)

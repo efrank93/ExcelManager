@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 
 from gui import BrowseSelector as bs
 from gui import MatrixViewer as mv
+from menu import MenuActions as ma
 
 file_icon = b'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsSAAALEgHS3X78AAABU0lEQVQ4y52TzStEURiHn' \
             b'/ecc6XG54JSdlMkNhYWsiILS0lsJaUsLW2Mv8CfIDtr2VtbY4GUEvmIZnKbZsY977Uwt2HcyW1+dTZvt6fn9557BGB' \
@@ -16,9 +17,9 @@ def create_window(theme):
         theme = sg.OFFICIAL_PYSIMPLEGUI_THEME
     sg.theme(theme)
 
-    # layout = [[sg.Menu(ma.menu_sections(), key='-MENU-')]]
+    layout = [[sg.Menu(ma.menu_sections(), key='-MENU-')]]
 
-    layout = [[
+    layout += [[
         mv.create_table('-MATRIXALL-'),
         mv.create_table('-MATRIXRESULT-'),
     ]]
@@ -32,6 +33,6 @@ def create_window(theme):
         ]
     ]
 
-    window = sg.Window("Excel Manager", layout, size=(1000, 550), resizable=True).Finalize()
+    window = sg.Window("Excel Manager", layout, size=(1300, 700), resizable=True).Finalize()
 
     return window

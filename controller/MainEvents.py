@@ -7,6 +7,7 @@ from menu import ThemeDisplay as td
 
 
 def main_window_events(window):
+    global df, df_sum
     while True:
         event, values = window.read()
         if event == 'Exit' or event == sg.WIN_CLOSED:
@@ -29,9 +30,12 @@ def main_window_events(window):
             mv.update_headings(window['-MATRIXRESULT-'].Widget, headings)
             window['-MATRIXALL-'].update(values=values)
         elif event == '-GROUPBYCOL-':
+            column = sg.popup_get_text('Column', 'Please insert column to apply group by and sum')
             file_list = window['-FILELIST-'].Values
             df = mv.read_file_into_matrix(file_list)
-            df2 = mv.group_by_column(df, 'A')
-            headings = df2.columns.tolist()
-            values = df2.values.tolist()
-            window['-MATRIXRESULT-'].update(values=values)
+            df_sum = mv.group_by_column(df, column)
+            window['-MATRIXRESULT-'].update(values=df_sum.values.tolist())
+        elif event == '-EXPORTCSV-':
+            output_dir = sg.popup_get_folder('Enter csv output directory')
+            mv.create_csv(df_sum, output_dir)
+
