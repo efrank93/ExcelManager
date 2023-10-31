@@ -1,7 +1,7 @@
 import os
 
 import PySimpleGUI as sg
-
+from controller import ConfigManager as cm
 
 def file_selection():
     layout = [
@@ -28,23 +28,21 @@ def get_files_from_folder(folder):
         file_list = []
 
     # check if given files are valid and have one of the following extensions (.csv, .xls, .xlsx)
-    filenames = [
-        f
-        for f in file_list
-        if os.path.isfile(f) and (
-                f.lower().endswith('.xlsx') or
-                f.lower().endswith('.xls') or
-                f.lower().endswith('.csv'))
-    ]
+    extensions = cm.read_config()['extensions']
+    valid_file = []
+    for file in file_list:
+        name, extension = os.path.splitext(file)
+        if extension in extensions and os.path.isfile(file):
+            valid_file.append(file)
 
-    return filenames
+    return valid_file
 
 
 def add_file_to_list(file_list, file):
-    if os.path.isfile(file) and (
-            file.lower().endswith('.xlsx') or
-            file.lower().endswith('.xls') or
-            file.lower().endswith('.csv')):
+    # check if given files are valid and have one of the following extensions (.csv, .xls, .xlsx)
+    extensions = cm.read_config()['extensions']
+    name, extension = os.path.splitext(file)
+    if extension in extensions and os.path.isfile(file):
         file_list.append(file)
     else:
         sg.popup_error('invalid file type')  # Shows red error button
