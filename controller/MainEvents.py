@@ -3,7 +3,6 @@ import PySimpleGUI as sg
 from gui import BrowseSelector as bs
 from gui import MainWindow as mw
 from gui import MatrixViewer as mv
-from menu import ThemeDisplay as td
 
 
 def main_window_events(window):
@@ -34,7 +33,7 @@ def main_window_events(window):
             df = mv.read_file_into_matrix(file_list)
             df_sum = mv.group_by_column(df, column)
             window['-MATRIXRESULT-'].update(values=df_sum.values.tolist())
+            window['-EXPORTCSV-'].update(disabled=False)
         elif event == '-EXPORTCSV-':
             output_dir = sg.popup_get_folder('Enter csv output directory')
             mv.create_csv(df_sum, output_dir)
-

@@ -1,8 +1,7 @@
 def menu_sections():
 
     layout = [
-        ['&Settings', ['&Theme']],
-        ['&Help', ['&About']]
+        ['&Settings', ['&Theme']]
     ]
 
     return layout

@@ -11,11 +11,18 @@
         "alternating_row_color": "green",
         "expand_x": true
     },
+    "exportcsv": {
+        "disabled": false
+    },
     "main-window": {
         "width": 1300,
         "height": 700,
         "resizable": true,
         "title": "Excel Manager"
     },
-    "extensions": [".csv", ".xls", ".xlsx"]
+    "extensions": [
+        ".csv",
+        ".xls",
+        ".xlsx"
+    ]
 }

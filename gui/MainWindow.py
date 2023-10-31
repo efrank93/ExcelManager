@@ -25,7 +25,7 @@ def create_window():
             sg.Column(bs.file_selection(), vertical_alignment='top'),
             sg.Button('Read file', key='-READFILE-'),
             sg.Button('Group values', key='-GROUPBYCOL-'),
-            sg.Button('Export result', key='-EXPORTCSV-')
+            sg.Button('Export result', key='-EXPORTCSV-', disabled=True)
         ]
     ]
     main_window = data['main-window']

@@ -20,9 +20,11 @@ def read_file_into_matrix(list_file_path):
 
 def sum_row_by_column(df, column):
     # Group by a specific column (e.g., 'Category') and perform an aggregation (e.g., sum)
-    data = df.groupby([column]).sum()
-    return data.reset_index()
+    if column:
+        data = df.groupby([column]).sum()
+        return data.reset_index()
 
 
 def create_csv(df, output_dir):
-    df.to_csv(output_dir + '/' + 'result.csv')
+    if output_dir:
+        df.to_csv(output_dir + '/' + 'result.csv')

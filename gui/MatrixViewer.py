@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 
-from functions import matrix as mx
 from controller import ConfigManager as cm
+from functions import matrix as mx
 
 COL_HEADINGS = ['HEADER 1', 'HEADER 2', 'HEADER 3', 'HEADER 4', 'HEADER 5']
 ROW_VALUES = [['VALUE 1', 'VALUE 2', 'VALUE 3', 'VALUE 4', 'VALUE 5']]

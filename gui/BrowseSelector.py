@@ -1,7 +1,9 @@
 import os
 
 import PySimpleGUI as sg
+
 from controller import ConfigManager as cm
+
 
 def file_selection():
     layout = [
