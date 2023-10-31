@@ -1,20 +1,23 @@
 import PySimpleGUI as sg
 
 from functions import matrix as mx
+from controller import ConfigManager as cm
 
 COL_HEADINGS = ['HEADER 1', 'HEADER 2', 'HEADER 3', 'HEADER 4', 'HEADER 5']
 ROW_VALUES = [['VALUE 1', 'VALUE 2', 'VALUE 3', 'VALUE 4', 'VALUE 5']]
 
 
 def create_table(key):
+    data = cm.read_config()['table']
+    font = (data['font-family'], data['font-size'])
     return [[sg.Table(values=ROW_VALUES,
                       headings=COL_HEADINGS,
-                      max_col_width=20,
-                      num_rows=10,
-                      justification='center',
-                      font=('Arial', 12),
-                      alternating_row_color='green',
-                      expand_x=True,
+                      max_col_width=data['max_col_width'],
+                      num_rows=data['num_rows'],
+                      justification=data['justification'],
+                      font=font,
+                      alternating_row_color=data['alternating_row_color'],
+                      expand_x=data['expand_x'],
                       key=key)]]
 
 

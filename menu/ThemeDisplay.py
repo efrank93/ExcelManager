@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+from controller import ConfigManager as cm
+
 
 # Retrieve selected theme by user
 
@@ -33,6 +35,17 @@ def theme_window():
     return sg.Window("Theme Manager", theme_layout, size=(500, 350), resizable=True).Finalize()
 
 
+def get_theme_from_config():
+    theme_color = cm.read_config()['theme']['color']
+    return theme_color
+
+
+def set_theme_in_config(theme):
+    data = cm.read_config()
+    data['theme']['color'] = theme
+    cm.write_config(data)
+
+
 def theme_main():
     window = theme_window()
     while True:
@@ -40,8 +53,7 @@ def theme_main():
         if event == "Exit" or event == sg.WIN_CLOSED:
             break
         elif event == "Set Theme":
-            print("[LOG] Clicked Set Theme!")
             theme_chosen = values['-THEMELISTBOX-'][0]
-            print("[LOG] User Chose Theme: " + str(theme_chosen))
+            set_theme_in_config(theme_chosen)
             window.close()
             return theme_chosen

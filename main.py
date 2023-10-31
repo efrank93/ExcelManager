@@ -2,15 +2,13 @@
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-import PySimpleGUI as sg
 
 from controller import MainEvents as me
 from gui import MainWindow as mw
 
 
 def main():
-    sg.theme('Dark')
-    window = mw.create_window(sg.theme())
+    window = mw.create_window()
     me.main_window_events(window)
 
     window.close()

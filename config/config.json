@@ -1,0 +1,21 @@
+{
+    "theme": {
+        "color": "DarkBlue3"
+    },
+    "table": {
+        "font-family": "Arial",
+        "font-size": 12,
+        "justification": "center",
+        "max_col_width": 20,
+        "num_rows": 10,
+        "alternating_row_color": "green",
+        "expand_x": true
+    },
+    "main-window": {
+        "width": 1300,
+        "height": 700,
+        "resizable": true,
+        "title": "Excel Manager"
+    },
+    "extensions": [".csv", ".xls", ".xlsx"]
+}

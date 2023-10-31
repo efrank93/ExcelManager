@@ -18,9 +18,8 @@ def main_window_events(window):
         elif event == '-FILE-':
             window['-FILELIST-'].update(bs.add_file_to_list(window['-FILELIST-'].Values, values['-FILE-']))
         elif event == 'Theme':
-            theme = td.theme_main()
             window.close()
-            window = mw.create_window(theme)
+            window = mw.create_window()
         elif event == '-READFILE-':
             file_list = window['-FILELIST-'].Values
             df = mv.read_file_into_matrix(file_list)
